@@ -1,0 +1,306 @@
+#start django...
+
+#install django
+pip3 install django
+
+django-admin  # show the main command. it is a CLI = command line interface
+
+django-admin startproject <pro-name> # start a pro at current dir ----startproject is a subcommand for django-admin
+
+<manage.py> is a heart of django pro
+
+
+'wsgi.py' and 'asgi.py' file uses to deploy files 
+
+the 'settings.py'  is global setting about pro
+
+
+python manage.py   #run manage.py 
+./manage.py  #show subcommands 
+
+#install django at virtual env
+
+localhost=127.0.0.1
+
+./manage.py startapp <app_name>#make an app named app_name by subcommand startapp at django file at current dir
+
+add <started_app_name> to INSTALLED_APP at settings of main file.
+
+form django.urls import path
+from django.http import HttpResponse
+from django.urls import include # to include an url in an app to urls in the main urls.py 
+
+placeholder: #make variable at jango by <>  .e.g  '<variables>' in the string yet use in path. and return it to function.
+
+from django.http import HttpResponseNotFound
+
+#command at placeholder
+path("<int:variable>",...) or path("<str:variable>",...) #order by the way that <str:vari>
+if it is possible to change <variable> type to int or str or anyother order it changes to.
+
+
+302....#status code 300,302,... are especially used as redirections events.
+
+from http import HttpResponseRedirect
+HttpResponseRedirect("newurl")#it resend the page to "newurl"
+
+#use reverse
+from django.urls import reverse  #it get a name and reverse or make a url by that.
+but you should use the name at urls.py at urlpatterns at path    .e.g
+path('path_url<var1><var2>..',views...., name="path_name") #it take a name to path and has been used in place of 'path_url'
+#how to use reverse???
+from django.urls import reverse 
+path_vari = reverse('name of the path .e.g path_name',args=[var1,var2])
+#path name was an entered name at urls.py at path and their variables(args) at path must be in the list 
+and then we have a full url of made application at path_vari
+#then we can use it by:'{path_vari}' at string.
+
+
+
+
+
+
+
+
+
+#to use html tags at views....
+our_reply = f'<html-tag> messages...</html-tag>'  #it run html tag at browser.
+and send our_reply by HttpResponse(our_reply)
+
+
+#work with templates   *********
+make a file named 'templates' and make another at that named our application name so ...
+our-app/templates/our-app/
+then make html-file at that path.
+
+
+
+#use templates
+first make a dir at app_name_folder
+app_name_folder/templates/app_name_folder
+then we make html template at that folder: app_name_folder/templates/app_name_folder
+after that go to views and --> 
+from django.template.loader import render_to_string  #it changes html templates or file at app_name_folder to string at the path gien.
+our_html_string = render_to_string( 'app_name_folder/html1.html') #render html1.html to string 
+then
+return HttpResponse(our_html_string)  #clearly done after good pathing at urls.py.
+or.....
+from django.shourtcuts  import render   
+return render(request,'app_name_folder/html1.html')  #it directly make it string at return it 
+
+  
+
+we can use complete address at settings.py at TEMPLATES at 'dir':"our_path" and we don't sign our app 
+to INSTALLED_APP   
+
+
+if you made a variable at urls.py you must sign it at the views.py
+
+DTL = django templates language      #merge django syntax and html syntax
+#use dtl to update files
+at views.py you need render
+we can send informations by the dictionary at views by render.
+dict={'key1':'data1',...} s
+we can send it by render
+render(request,'html-file-path.html',context)
+render(request,'html-file-path.html',dict) it send informations at dictionary type just in dictionary and the keys is usable at htmlfile
+then go to htmlfile and read the data at dict by {{key1}} and it sends the 'data1' at html file
+<span>{{key1}} </span>   
+#***notice: we use the key to send the values.
+
+
+
+#django template filter     search and found different built in filter
+built in filter has been used by ' | ' after html dtl
+.e.g     
+<span>   it is the time{{ time | add 3}}   </span>
+just showing variable has been changed not a main vari.
+
+you can form your built in filter function.
+
+
+#template tags
+uses in template html files
+{% python command .. %}   #is used to command python in htmlfiles
+..html commands.....
+{% end python command %}
+
+
+
+#search about different template tags  .e.g   url template tag
+{% url "url's name"    variable_value1 va...2  v..3 ...%}  #we can use url command to make link between urls 
+or 
+{% url "url's name"    variable1=value1 va.2=...2  v..3=..3 ...%}  send values to variables needed.  
+***it makes complete url not a complete link and you haven't to close this tag.
+
+#{% if condition1 %}
+    do 1
+ {%elif condition2%}
+    do 2
+ {%else %}
+    do3
+ {%endif%}
+'if' tag to set conditional matter.
+
+
+#use inheritance at html files to make code shorter.
+make a folder named'templates' at main djagnofile
+then make a file named 'base.html' or other name...
+write base html code.
+then use {% block block_name %} default data{% endblock block_name %} at 'base.html'file
+#how to use it in other html file
+{% extends '../../../or_path_of_base.html' %} or {% extends 'name_of_base.html' %} ###
+***but if you want to use the direct name of 'name_of_base.html' you should add the 
+newtemplats folder PATH in the settings at templates part
+*it reuse the base.html file.
+
+
+
+#how do i use the  include tag 
+make a folder named includes at one of templates folder
+then make a html file you want to reuse at another htmlfiles
+go where you want to use the 'includes'file contains and write an include tag in this way:
+{% include 'written_file_at_includesfile_PATH.html' %} # it run the lines you write at that file.
+we can use special part of htmlfile at include tag but yet i don't learn it ..
+***if we don't use render to send dictionary of informations we can't use dtl type of variables 
+at the include tag.
+#use given data at main page and sign it at html includes file
+sign the vari at include tag .e.g but use it at includes_file.htmls
+###use it ...
+{% include 'includes/file.html' with vari_sign_here_use_in_main_html="7days at cheers.html" %}
+use the variable by {{vari_at_mainhtml_sign_at_includes_file}}
+
+
+#make 404  not found page
+make 404.html file in the templates folder using extends and block tags of base.html
+in views.py use 
+from django.template.loader import render_to_string   #to change html file to pure string
+from django.http import HttpResponseNotFound    #to send a html page
+vari1 = render_to_string('path/404.html')   #change 404.htlm to string
+return HttpResponseNotFound(vari1)           #return vari1 to page 
+#or you can go another way
+from django.http import Http404
+raise Http404()                  #automatically send 404.html file at templates or  automatic not found error page
+notice*******:use ''''raise''''' not return _and you can make 404.html or not to used by http404()
+
+
+###########**django is MVT STRUCTURED means model.view.template
+
+
+
+#static files 
+first make 2 folders into eachother at your 'app_path'
+make  'app_path/static/app_path_name/appname.css'      #.e.g: we have a example static file like appname.css at the path of static files 
+then control 2 parameters at main settings.py 
+one: at INSTALLED_APPs part the 'django.contrib.statics' has been should to be     #make sure statics part of django run
+two; at  STATIC_URL= '/static/'  has been should to be as a static file path.       #make sure path of static file signed at the settings.py
+* good move 
+so now to use static files like css files we should write a special tag above the file 
+we want to use the statuc files in it  the tag is :::
+{% load static %}                                               #to remind we want to use static files.
+then to use the css file we need to make a html tag that is ::
+<link rel="stylesheet"  href = "{% static 'appname_path/appname.css'%}"   #notice: use a static tag to sign it and for all static file at html we need <link> tag.
+then we write changes at appname.css file and it must run.
+.........it's done rightly..............
+
+
+
+#use static files at main part of django
+make 'static' folder at main part of app beside manage.py and db.sqlite3
+make css file .e.g  style.css
+and do changes in it .e.g  add new font of google
+you need to add new thing in your main 'settings.py':::
+STATICFILES_DIRS = [
+BASE_DIR / "main_static_path_name" ,
+]                                                #it cause to find the main static files at "main_static_path_name" files
+then make a <link rel=? href=?> tag at the file you want to do changes of static files in it 
+####
+
+
+
+#slug type:   #inclusion to int and str.
+#path('sldkf<slug:slug',views/ldkf)
+
+ 
+notice:*****extends tag must be the first tag at html pages....
+
+
+"چرا میتونم از پوشه ی استاتیک داخل  اپ خودم عکس بیارم اما از استاتیک اصلی نمیشه؟؟؟؟؟؟؟؟؟"
+چرا نمیتوانم از استاتیک اصلی استفاده کنم؟
+
+
+
+
+
+
+
+#static images at pro
+put images at  appfolder/static/appfolder_name/images/
+and then read them by static tag.   ####imgs that uploaded is defferent.
+
+
+
+
+notice***:we can send arguments without signing by name in order .e.g:
+{%url 'nameofpath'  arg1='sldkfj' arg2='sldkf'%} or  {%url 'nameofpath' 'valu1' 'value2' %}
+
+
+
+
+#send data as a dict by render
+when we send the data to a html file we can use dependencies of that part of file to the 
+dict sended. 
+notice:#####to read informtions from file dont use '' dict={'d':'s'} you should write{{dict.d}},
+
+
+
+when we use STATIC TANG  #######3
+{{static 'path'|add:item.entry}} #it adds 'item.entry'obj at the end of 'path' str to make it dynamic.
+
+
+
+
+
+******python good function****
+            next()
+current_vari= next( vari for vari in list_or...  if vari==condition or...)  #found first item make conditions satisfied.
+******
+
+
+linebreaks********** 
+{{item.content|linebreaks}}  #line breaks enable our enterline in paragraph at html1.html
+
+
+
+
+#databases*****************
+data
+1,temperary data
+2,semipersistant data
+3,persistant data     
+3 saved in databases 
+
+
+
+types of databases:
+1,sql    2,nosql
+
+
+connect database by django in models.py:
+from django.models import models
+class  class_name(models.Model):  #you should write models.model in the argumant to connect 
+                 ###and class_name is name of the table at database
+   
+
+*google django models fields
+
+
+
+
+
+
+
+
+
+
+
