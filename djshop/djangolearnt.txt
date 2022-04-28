@@ -352,13 +352,22 @@ class model_class_in_models.py(models.Model):
    ####Its the way we use validators.
 
    
+#make new changes in items of database
+from app_name.models import model_class_name.objects.all    #import db class from models.py
+vari1 = model_class_name.objects.all()[2]       #select the entire table of db
+vari1.item = new_value     #make changes to item
+vari1.save()               #to save changes in db
+
+#delete entry in db
+from app_name.models import model_class_name.objects.all    #import db class from models.py
+vari2 = model_class_name.objects.all()[2]       #make instance or select the entire table of db
+vari1.delete   delete an entry
 
 
 
-
-
-
-
+#add entry to db _another way without instance
+#    create    *
+model_class_name.objects.create(item1=val1,arg2=val2,...)
 
 
 
