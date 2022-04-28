@@ -20,3 +20,4 @@ class products(models.Model):
     def __str__(self):
         return f'{self.title}____{self.price}'
     
+    #hello from github site...
