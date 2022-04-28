@@ -288,11 +288,72 @@ types of databases:
 
 connect database by django in models.py:
 from django.models import models
-class  class_name(models.Model):  #you should write models.model in the argumant to connect 
+class  class_name(models.Model):  
+#inorder to inherit at models.Model 
+#you should write models.model in the argumant to connect 
                  ###and class_name is name of the table at database
    
 
 *google django models fields
+
+at any class at models.py you should use the database by modules of models 
+.e.g:
+title = models.CharField(max_length= 300)
+price = models.IntegerField()
+#we called above class "model"
+**inorder to use database you should mention "app_name" in "installed apps" in settings.py
+
+
+***   ORM  ****
+connections of programming and database features.
+
+?
+?
+create,read,update,delete ==== its famous to CRUD
+
+
+./manage.py  shell    ###use python shell in django
+***commanding at django shell***
+from <appname>.models  import <model_class_name_in_models.py>
+
+#create items via shell in database
+item_name = imported_models_class(arg1=valu1 ,arg2=val2,...)
+item_name.save()      #it saves it to database.
+
+model_class_name.objects.all() #see evidance of adding item at database via shell
+
+#show entries items by shell 
+model_class_name.objects.all()[item_number].item_name
+e.g.:
+products.objects.all()[1].price   #return "price" item in the"products"class in the 2th item.entry
+
+#add __str__ module to model.class
+def __str__(self):
+   return f'{self.item1}_{self.item2}-....'
+
+###google django models validator.
+
+#**   validator in django  **#
+#first import them
+from django.core.validators  import MinValueValidator,Max.Value.Validator
+*then use them
+#add null,default 
+# null ===we can put nothing in it ,   default = val1  ====put val1 in all doesn't have value
+class model_class_in_models.py(models.Model):
+   item_1_in_db = models.CharField(max_length = 300,null=True)
+   item_2_in_db = models.BooleanField(default = False)
+
+   item_3_in_db = models.IntegerField(
+      validators =[
+      MinValueValidator = 3,
+      MaxValueValidator = 234, 
+      ]
+   )
+   ####Its the way we use validators.
+
+   
+
+
 
 
 
