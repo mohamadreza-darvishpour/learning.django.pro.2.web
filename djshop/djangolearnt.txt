@@ -361,13 +361,54 @@ vari1.save()               #to save changes in db
 #delete entry in db
 from app_name.models import model_class_name.objects.all    #import db class from models.py
 vari2 = model_class_name.objects.all()[2]       #make instance or select the entire table of db
-vari1.delete   delete an entry
+vari2.delete   #delete an entry
 
 
 
 #add entry to db _another way without instance
 #    create    *
 model_class_name.objects.create(item1=val1,arg2=val2,...)
+
+#read data without objects.all()[1]...
+#read by 'get()'
+models_class_name.get(item=value) 
+#*it returns just '''one''' entry with the same value at item
+#notice: if data not found or exist more than 1 with same value of item it makes error...
+
+
+
+#filter given data
+model_class_name.objects.filter( feature1=value1 , feature2= value2 ) 
+#return all of the entries contained values of features.
+###notice: I can't use '<  <=  >=  >' in the filter but has been made another way to do that.
+
+
+#***use field lookups ***#
+models.class_name.objects.filter(
+   feature1__lt=3,        ###__lt=lower than = feature1<3
+   feature2__lte=5,        ###__lt=lower than equal = feature2<=5
+   feature3__gt=7,        ###__lt=greater than = feature3>7
+   feature4__gte=9,        ###__lt=lowerthan equal= feature4>=9
+   feature5__contains='text5'    ##text5 exists in that.key sensitive
+   feature6__icontains='text6'    ##text6 exists in that.not key sensitive
+   )
+
+
+###google django filter  +  feild lookups
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
