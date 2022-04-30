@@ -409,6 +409,43 @@ models.class_name.objects.filter(
 
 
 
+#make base.html at main templates but other html file in templates/app_name/other.html
+notice: control ('DIRS:[BASE_DIR /'templates']) has been gotten in template part at main settings.py.
+
+write below in urls.py
+from django.urls import path
+from . import views
+
+in main urls.py write and import lines below: #to add all path to main app.
+from django.urls import include,path
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('anypath/',include('app_name.urls')),
+]
+
+
+
+####***    use database in views.py   ***####
+in views.py we should write:
+from .models import models_class_name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

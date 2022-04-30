@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}{%endblock%}
+
+
+{%block content%}
+
+    <ul>
+        {% for item  in all_products%}
+        <li>  
+            <a href='#'> {{item.title}} </a>   
+            <p style="color:aqua;text-decoration: none;">price = {{item.price}} ---> rating = {{item.rating}}</p>
+        
+        </li>
+        {%endfor%}
+    </ul>
+{%endblock%}
