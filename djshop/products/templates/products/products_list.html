@@ -1,5 +1,5 @@
 {%extends 'base.html'%}
-
+from django.urls import url
 {%block title%}{%endblock%}
 
 
@@ -8,7 +8,7 @@
     <ul>
         {% for item  in all_products%}
         <li>  
-            <a href='#'> {{item.title}} </a>   
+            <a href='{{item.id}}'> {{item.title}} </a>   
             <p style="color:aqua;text-decoration: none;">price = {{item.price}} ---> rating = {{item.rating}}</p>
         
         </li>

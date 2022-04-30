@@ -429,6 +429,17 @@ urlpatterns = [
 in views.py we should write:
 from .models import models_class_name
 
+#get data from db or raise 404
+from django.shortcuts import get_object_or_404  #import to use
+prods=get_object_or_404(model_class_name,feature=value)    #get data or send 404
+
+
+
+
+
+
+
+
 
 
 
