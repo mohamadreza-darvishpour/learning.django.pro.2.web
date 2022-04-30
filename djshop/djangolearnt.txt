@@ -392,14 +392,19 @@ models.class_name.objects.filter(
    feature5__contains='text5'    ##text5 exists in that.key sensitive
    feature6__icontains='text6'    ##text6 exists in that.not key sensitive
    )
-
+it uses 'and' between features.inorder to use 'or' we do another way.
 
 ###google django filter  +  feild lookups
 
 
-
-
-
+###how to use 'or' among features of filter??
+from django.db.models import Q    #import Q as query.
+then: #use Q and '|'
+models.class_name.objects.filter(
+   Q(feature1__lt=3) |  Q(feature2__lte=5) | Q(feature3__gt=7) | Q(feature4__gte=9) |  Q(feature5__contains='text5') | Q(feature6__icontains='text6') ) 
+#Q uses 'or' between differenet features not 'and'
+# we can use 'or=|'and 'and=,' together in the filter also.
+#notice: last feature can come without 'Q' but it has to use and=','
 
 
 
