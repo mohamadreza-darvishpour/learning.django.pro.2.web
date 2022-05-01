@@ -461,9 +461,19 @@ when we use a specific item in database we sign in by " db_index=True" to make d
 
 
 
+###   aggregate.   ***
+#how to use average,Min,Max,.. in database.   and put them in the dictionary.
+from django.db.models import Min,Avg,....
+then use it by variables includes data of databases
+items = class_model_name.objects.all()
+features_aggregated = items.aggregate(Avg('item1_in_database'),Min("item2_in_database"),...)
+#now 'features_aggregated' is a dictionary with the data we wanted.
 
 
-
+#order command :order given data form database before extract them from database.
+items = class_model_name.objects.all().order_by('item1_in_db',item2_in_db',...)
+#it sends ordered data to python.
+#notice: its much more better to order datas at database rather than python or any interpreter.
 
 
 
