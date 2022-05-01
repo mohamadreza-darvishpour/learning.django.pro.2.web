@@ -16,7 +16,7 @@ class products(models.Model):
     )
     short_description = models.CharField(max_length=390,null=True)
     is_active = models.BooleanField(default=False)
-    slug = models.SlugField(default="",null=False)
+    slug = models.SlugField(default="",null=False,db_index=True)
     def __str__(self):
         return f'{self.title}____{self.price}'
     

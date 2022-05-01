@@ -443,8 +443,9 @@ reverse('url_name' args=[vari1,vari2,...])
 
 #use get_absolute_url in models
 in models.py in one of classes of database add a function:
+from django.urls import reverse
 def get_absolute_url(self):
-   return self.feature       #.e.g:self.id
+   return reverse('url_name' args=[self.feature])       #.e.g:self.id
 *then go to html file and use {{tiem.get_absolute_url}}
 
 
@@ -454,7 +455,8 @@ slug is key word to sign a data.
 
 
 
-
+#db_index = True
+when we use a specific item in database we sign in by " db_index=True" to make database works better.
 
 
 
