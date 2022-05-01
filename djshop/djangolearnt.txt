@@ -479,10 +479,18 @@ items = class_model_name.objects.all().order_by('item1_in_db',item2_in_db',...)
 
 
 
+***    django admin   ****
+#super user to access datas
+python manage.py createsuperuser     
 
 
-
-
+#make database items visible at django admin page
+#how to config it ???
+#in admin.py in application do below changes
+from django.contrib import admin
+from . import models
+admin.site.regsiter(models.class_model_database_name)    #they inform the main administration of django "that class_model_database_name" exists in database...
+ 
 
 
 
