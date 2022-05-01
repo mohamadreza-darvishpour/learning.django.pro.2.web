@@ -20,4 +20,7 @@ class products(models.Model):
     def __str__(self):
         return f'{self.title}____{self.price}'
     
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse("prod_detail",args=[self.id,] )
     #hello from github site...

@@ -8,7 +8,7 @@ from django.urls import url
     <ul>
         {% for item  in all_products%}
         <li>  
-            <a href="{%url 'prod_detail' prod_id=item.id %}"> {{item.title}} </a>   
+            <a href="{{item.get_absolute_url}}"> {{item.title}} </a>   
             <p style="color:aqua;text-decoration: none;">price = {{item.price}} ---> rating = {{item.rating}}</p>
         
         </li>
