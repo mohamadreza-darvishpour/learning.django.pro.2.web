@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 # Create your models here.
-
+from django.utils.text import slugify
 
 
 class products(models.Model):
@@ -16,11 +16,15 @@ class products(models.Model):
     )
     short_description = models.CharField(max_length=390,null=True)
     is_active = models.BooleanField(default=False)
-
+    slug = models.SlugField(default="",null=False)
     def __str__(self):
         return f'{self.title}____{self.price}'
     
     def get_absolute_url(self):
         from django.urls import reverse
-        return reverse("prod_detail",args=[self.id,] )
-    #hello from github site...
+        url_to_return = f'{str(self.id)}_{self.slug}'
+        return reverse("prod_detail",args=[url_to_return,] )
+    
+    def save(self,*args,**kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args,**kwargs)

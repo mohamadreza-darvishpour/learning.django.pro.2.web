@@ -436,6 +436,23 @@ prods=get_object_or_404(model_class_name,feature=value)    #get data or send 404
 
 
 
+#use reverse to send url 
+from django.urls import reverse
+reverse('url_name' args=[vari1,vari2,...])
+
+
+#use get_absolute_url in models
+in models.py in one of classes of database add a function:
+def get_absolute_url(self):
+   return self.feature       #.e.g:self.id
+*then go to html file and use {{tiem.get_absolute_url}}
+
+
+
+#whats slug in django:
+slug is key word to sign a data.
+
+
 
 
 
