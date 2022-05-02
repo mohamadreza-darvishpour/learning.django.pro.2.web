@@ -515,6 +515,11 @@ class class_name_admin(admin.ModelAdmin):
       'item1_in_db':['item2_in_db'],
    }
 
+*****
+google django admin
+*****
 
+
+*** how to filter item in django admin page.
 
 
