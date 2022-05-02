@@ -492,15 +492,28 @@ from . import models
 admin.site.regsiter(models.class_model_database_name)    #they inform the main administration of django "that class_model_database_name" exists in database...
  
 
+#blank = True,False
+means we can get the value or not to an entry in database. when we don't get value we won't see error
+
+#editable = True,False
+means it hasn't permitted to edit the entry saved in database before.
+
+
+#### *** make db items in admin page editable or not
+from django.contrib import admin   #in admin.py
+#make a class inherites from admin.ModelAdmin
+class class_name_admin(admin.ModelAdmin):
+   readonly_fields = ['item1_in_db','item2_in_db',....] #it make all these items just 'readable' in admin page database part.
+#then make addintional inheritance of your regsiter class to above class=class_name_admin
+admin.site.register(models.class_name_in_database,class_name_admin)
 
 
 
-
-
-
-
-
-
+#prepopulated_fields     ****  when item has been adding in admin page it adds the item2_in_db we want too.
+class class_name_admin(admin.ModelAdmin):
+   prepopulated_fields = {
+      'item1_in_db':['item2_in_db'],
+   }
 
 
 
