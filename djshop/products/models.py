@@ -4,9 +4,19 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from django.utils.text import slugify
 
 
+class product_category(models.Model):
+    title = models.CharField(max_length= 300,verbose_name ='title of subject',)
+    url_title = models.CharField(max_length=300,verbose_name = 'title of url',)
+    def __str__(self):
+        return self.title
+
+    
+
+
 class products(models.Model):
     title = models.CharField(max_length=30)
     price = models.IntegerField()
+    category = models.ForeignKey(product_category, on_delete=models.CASCADE,null=True) #or models.Set_Null or models.PROTECT
     rating = models.IntegerField(
         validators=[
             MinValueValidator(1),
@@ -28,3 +38,5 @@ class products(models.Model):
     def save(self,*args,**kwargs):
         self.slug = slugify(self.title)
         super().save(*args,**kwargs)
+
+

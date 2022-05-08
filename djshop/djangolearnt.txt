@@ -511,6 +511,7 @@ admin.site.register(models.class_name_in_database,class_name_admin)
 
 #prepopulated_fields     ****  when item has been adding in admin page it adds the item2_in_db we want too.
 class class_name_admin(admin.ModelAdmin):
+   readonly_fields = ['item1_in_db','item2_in_db',....] #it make all these items just 'readable' in admin page database part.
    prepopulated_fields = {
       'item1_in_db':['item2_in_db'],
    }
@@ -521,5 +522,38 @@ google django admin
 
 
 *** how to filter item in django admin page.
+#list_display,list_filter,list_editable
+class class_name_admin(admin.ModelAdmin):
+   list_display = ('item1_in_db','item2_indb',..) #display items in first main list of django admin page
+   list_filter = ['item1_in_db',...]    #accessibility to felter by 'items'in db,
+   list_editable=('item1_in_db','item2_in_db',,,)  #access to edit 'items' in tuple in main django admin list of database
+
+   
+
+**#relations between tables of databases.
+1-  1 to 1
+2-  1 to several
+3-  several to several
+
+
+*MAKE  a relational table (add an item to main models.py)
+first make a table that you want to ralate to another table in models.py through:
+class models_table1_name(models.Model):
+   item1=....,
+   item2=....,
+then to relate it to another do :
+class models_table2_name(models.Model):
+   .........
+   item_to_relate_to_another_table = models.Forein_Key(to=models_table1_name , on_delete=models.PROTECT)   
+   at the section('to=?') we should mention the table we want to relate to item.content
+   at the section('on_delete=?') .....recognize how it has been done after delete the table relate to that.for instance:
+   models.CASCADE    means that after delete that delete this
+   models.PROTECT    means that after delete that keep this
+   models.SET_NULL   means that after delete that keep both but don't show templates/app_name/other.html
+   we have more option.......
+   ****what is SOFT_DELETE: DEACTIVE NOT DELETE.
+
+
+
 
 
