@@ -8,7 +8,7 @@ class product_category(models.Model):
     title = models.CharField(max_length= 300,verbose_name ='title of subject',)
     url_title = models.CharField(max_length=300,verbose_name = 'title of url',)
     def __str__(self):
-        return self.title
+        return (f'{self.title}  {self.url_title}')
 
     
 
