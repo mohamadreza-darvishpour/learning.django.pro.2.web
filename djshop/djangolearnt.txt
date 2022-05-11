@@ -555,5 +555,8 @@ class models_table2_name(models.Model):
 
 
 
+*use one to many rel in views.py
+import the new_rel from models
+then we have access to the new_rel_item in every relational items.aggregate
 
 
