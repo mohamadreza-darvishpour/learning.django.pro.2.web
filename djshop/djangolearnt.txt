@@ -560,3 +560,48 @@ import the new_rel from models
 then we have access to the new_rel_item in every relational items.aggregate
 
 
+###query to related table  in shell
+from  app_name.models import db_class,db_related_class
+obj1 = db_class.objects.filter(related_item__items-of-related-item+__items-that-we-have-access = "find that")
+.e.g:
+obj2 = products.objects.filter(category__title__contain="nokia")
+
+
+
+#access to main item of db through releted_item
+from  app_name.models import db_class,db_related_class
+#then in the shell
+rel_entry = class_name_models_to_relate.objects.get(name='corp')
+#now use one of methods of django
+rel_entry.main-class-models-name__set.all()      #it returns all objects related to rel_entry  #"__set" come at the end of "main_class_name" it's a django options.
+***
+#if you don't want to use "__set" in the end of your "main-class-name" you can mention the name at the models-class-name when you make a relational table through
+#then in the models.py in main class of db
+item_to_relate_to_another_table = models.Forein_Key(........,related_name = "special-name")   #its the new name use to get objects by the relational items.
+.e.g:
+>>> al= product_category.objects.get(id = 2)
+>>> al.products.all()   #or use filter  or ....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
