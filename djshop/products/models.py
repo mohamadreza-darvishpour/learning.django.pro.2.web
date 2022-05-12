@@ -4,6 +4,16 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from django.utils.text import slugify
 
 
+#many to many table
+class product_tag(models.Model):
+    title = models.CharField(max_length=99)
+
+    class Meta:
+        verbose_name ="tag"
+    def __str__(self):
+        return self.title
+    
+
 class product_category(models.Model):
     title = models.CharField(max_length= 300,verbose_name ='title of subject',)
     url_title = models.CharField(max_length=300,verbose_name = 'title of url',)
@@ -25,6 +35,7 @@ class product_info(models.Model):
     def __str__(self):
         return f'{self.color}_{self.size}'
 class products(models.Model):
+    tag = models.ManyToManyField(product_tag,blank=True)
     product_infos = models.OneToOneField(product_info,on_delete=models.CASCADE,verbose_name="additional_infos",related_name="product_info",blank=True,null=True)
     title = models.CharField(max_length=30)
     price = models.IntegerField()

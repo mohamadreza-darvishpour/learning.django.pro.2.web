@@ -610,8 +610,17 @@ class ProductsConfig(AppConfig):
 
 
 
+#many to many relation between tables in db
+#in models.py
+class many_to_many_item(models.Model):
+   item1 = models.IntegerField(max_length=32)
+#then in class we want to add many to many item in 
+class main_class(models.Model):
+   ...
+   item = models.ManyToManyField(m_to_m_last_defined_class)   #it adds m_to_m item in class_model_name.objects.all
 
 
+   
 
 
 

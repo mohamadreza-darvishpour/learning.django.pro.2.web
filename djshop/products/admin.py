@@ -16,3 +16,4 @@ class product_admin(admin.ModelAdmin):
 admin.site.register(models.products,product_admin)
 admin.site.register(models.product_category)
 admin.site.register(models.product_info)
+admin.site.register(models.product_tag)
