@@ -11,9 +11,14 @@ class product_category(models.Model):
         return (f'{self.title}  {self.url_title}')
 
     
-
-
+#make one to one relation
+class product_info(models.Model):
+    color = models.CharField(max_length=300,verbose_name='color',null=True)
+    size = models.CharField(max_length=200,verbose_name = 'size',null= True)
+    def __str__(self):
+        return f'{self.color}_{self.size}'
 class products(models.Model):
+    product_infos = models.OneToOneField(product_info,on_delete=models.CASCADE,verbose_name="additional_infos",related_name="product_info",blank=True,null=True)
     title = models.CharField(max_length=30)
     price = models.IntegerField()
     category = models.ForeignKey(product_category, on_delete=models.CASCADE,null=True,related_name="products",) #or models.Set_Null or models.PROTECT

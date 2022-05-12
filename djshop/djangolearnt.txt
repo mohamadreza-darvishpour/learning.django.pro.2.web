@@ -535,7 +535,7 @@ class class_name_admin(admin.ModelAdmin):
 2-  1 to several
 3-  several to several
 
-
+#one to many relation between tables.
 *MAKE  a relational table (add an item to main models.py)
 first make a table that you want to ralate to another table in models.py through:
 class models_table1_name(models.Model):
@@ -582,7 +582,9 @@ item_to_relate_to_another_table = models.Forein_Key(........,related_name = "spe
 >>> al= product_category.objects.get(id = 2)
 >>> al.products.all()   #or use filter  or ....
 
+blank=True or False   means the item could be empty.
 
+### one to one  relation between tables 
 
 
 
