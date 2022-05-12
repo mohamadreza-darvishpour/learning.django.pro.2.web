@@ -590,12 +590,23 @@ blank=True or False   means the item could be empty.
 
 
 
+####    Meta class in models.py    #####
+#how do we change some features in python admin self.item1
+#use Meta class in models.py in the tables class at models.py
+class ....(self);
+   ...
+   ...
+   class Meta:
+      verbose_name = "name1"   # change showed name in the table name of admin in site item1
+      verbose_name_plural = "name2"   #change showed plural name in the table name of admin in site item
 
 
-
-
-
-
+#change "your_app_module"name in admin site
+first: go to /your_app/apps.py
+then add verbose_name in class ProductsConfig(AppConfig):
+class ProductsConfig(AppConfig):
+   ...
+   verbose_name = "any_name"
 
 
 

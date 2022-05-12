@@ -9,6 +9,13 @@ class product_category(models.Model):
     url_title = models.CharField(max_length=300,verbose_name = 'title of url',)
     def __str__(self):
         return (f'{self.title}  {self.url_title}')
+    #add Meta class to change some features
+    class Meta:
+        verbose_name = "Meta_product_category"
+        verbose_name_plural = "Meta_plural_categories"
+
+
+
 
     
 #make one to one relation
