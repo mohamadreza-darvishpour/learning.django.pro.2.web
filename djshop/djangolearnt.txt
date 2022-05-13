@@ -623,7 +623,13 @@ class main_class(models.Model):
    
 
 
+#many to many relation in django shell
+#change and add tag by"add" and create
+tag_var1 = tag_db_model.create(item1=..)
+tag_var1.save()
+main_item2 = main_db_models.tag_item_in_main_db_class.add(tag_var1)
+main_item2.save()
 
-
-
+#reverselation ****how to find main item from dependent tag in relational tables
+var3 =   m_to_m_item.main_table_name_set.all()   #("_set" comes after main_table_name to show related variables.)
 
