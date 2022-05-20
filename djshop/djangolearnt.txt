@@ -638,6 +638,18 @@ var3 =   m_to_m_item.main_table_name_set.all()   #("_set" comes after main_table
 
 
 
+####use made templates for projects.
+first check the settings.py about static files.
+.e.g:
+STATIC_URL = 'static/'
+#new line changed below
+STATICFILES_DIRS=[
+    BASE_DIR / 'static'
+]
+#make 'static' folder in place of 'manage.py'
+
+
+
 
 
 
