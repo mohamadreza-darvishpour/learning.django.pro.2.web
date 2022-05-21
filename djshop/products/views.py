@@ -9,13 +9,13 @@ def products_show(request):
     number_of_products = prods.count()
     #count avg of raitngs
     from django.db.models import Avg,Min
-    rating_features = prods.aggregate(Avg("rating"),Min("rating"))
+    #rating_features = prods.aggregate(Avg("rating"),Min("rating"))
     prod_dict ={
         'all_products':prods,
-        'fitures_rating':rating_features,
+        #'fitures_rating':rating_features,
         'total_number':number_of_products,
     }
-    return render(request,'products/products_list.html',prod_dict)
+    return render(request,'products/shop.html',prod_dict)
 
 from django.http import Http404
 def product_detail(request,prod_slug):
