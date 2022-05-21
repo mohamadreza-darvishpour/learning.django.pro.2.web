@@ -41,35 +41,8 @@
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">محصولات عمده</h2>
 						
-						{%for item in all_products%}
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/shop/product.jpg" alt="" />
-										<h2> {{item.price}}$$$$$</h2>
-										<p>{{item.title}}</p>
-										<p> {{item.short_description}} </p>
-										
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>{{item.price}}$$$$$</h2>
-											<p> {{item.short_description}} </p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>افزودن به سبـد خریـد</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>لیست علاقه مندی ها</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>مقایسه</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+						{%for items in all_products%}
+							{%include "products/product_item_partial.html" with item=items %}
 						{%endfor%} 
 						<ul class="pagination">
 							<li class="active"><a href="">1</a></li>
