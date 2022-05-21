@@ -651,6 +651,57 @@ STATICFILES_DIRS=[
 
 
 
+# learn about django render partial  at its documents
+
+
+component = part of the page that controls by itself.
+#search about django render partial package.****
+
+
+#use dynamic page to make them component page.(access to dynamic data from database and use them in the relational page.)
+#first need "django render partial package" so download it
+pip install django-render-partial
+#and then add django_render_partial to "installed_apps" in settings.py
+#then you have 2ways to use it .. 
+one:
+make the views function related to speciall template ....
+then:  #in the template contained the other html:
+{%load  render_partial%}
+#then in that block you want,make render_partial tag to above 'views.py' function
+{%block anyone %}
+{%render_partial   "app_name.views.views_partial_name_function" %}
+{% endbock %}
+____________________________
+
+
+
+
+
+two:
+make the views function related to speciall template ....
+def partial_part(request):
+   return(request,"htmlpage_in_templates_.html",{,,,})
+
+then make a urls.py path that needs to name***
+"""path("special_partial",views.partial_part,name="partial_url_name"),"""
+
+then:  #in the template contained the other html:
+{%load  render_partial%}
+#then in that block you want,make render_partial tag to above 'views.py' function
+{%block anyone %}
+{%render_partial   "partial_url_name" %}
+{% endbock %}
+
+
+#noitce: it's better not to use url caused to guess url by people.
+___________________________
+
+
+
+
+
+
+
 
 
 
