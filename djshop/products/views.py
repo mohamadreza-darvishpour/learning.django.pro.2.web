@@ -17,24 +17,14 @@ def products_show(request):
     }
     return render(request,'products/shop.html',prod_dict)
 
-from django.http import Http404
+from django.http import Http404 
 def product_detail(request,prod_slug):
-    '''
-    try:
-        prods=products.objects.get(id=prod_id)
-    except:
-        raise Http404("this isn't found")
-    ''' 
-    list_slug = prod_slug.split("_")
-    prod_id = int(list_slug[0])
     from django.shortcuts import get_object_or_404
-    prods = get_object_or_404(products,id=prod_id)
-   
+    pr_slug = get_object_or_404(products,slug=prod_slug)
     detail_dict = {
-        'a_product':prods,
+        'a_product':pr_slug,
     }
     return render(request,'products/item_detail.html',detail_dict)
-
-
+   
 
     

@@ -4,8 +4,17 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from django.utils.text import slugify
 
 
+class product_brand(models.Model):
+    title = models.CharField(max_length=200,verbose_name="brand_name",db_index=True )
+    is_active = models.BooleanField(verbose_name="active/not_active" )
+    class Meta:
+        verbose_name="barnd_name"
+        verbose_name_plural="brands_name"
+    def __str__(self):
+        return self.title
 
-    
+
+
 #make one to one relation
 class product_info(models.Model):
     color = models.CharField(max_length=300,verbose_name='prod_info_color',null=True)
@@ -34,6 +43,7 @@ class product_category(models.Model):
 
 
 class products(models.Model):
+    brand = models.ForeignKey(product_brand, on_delete=models.CASCADE,verbose_name="brand_name_product",null=True)
     title = models.CharField(max_length=30,verbose_name= 'title')
     price = models.IntegerField(verbose_name="price")
     description = models.TextField(verbose_name="main_description",db_index=True,)
