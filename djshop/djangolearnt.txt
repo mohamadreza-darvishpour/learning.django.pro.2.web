@@ -701,6 +701,97 @@ ___________________________
 ######     how to work with forms    ::::::*****
 
 
+form in html ****
+<form  ....  method="post" or "get"    action= "{% url 'url_name_urls.py'%}"> #action:where infos send.if 'actin' not signed,infos send to current page address  #"post"method send infos in header not url but "get"mothod sends infos in by url.
+   <input type=''  name=''  class='' required=''  placeholder='' >  #type can be text or email or... #required means its essential to put or not #placeholder is the name is shown in the empty box.
+#####******8#name is so important caused to be 'variable_name' of input in the server side.
+</form>
+
+
+#use  CSRF token to send infos.
+add a line below in 'form'tag of html:
+{% csrf_token %}     # send CSRF token to make safe send infos.
+
+
+#recognize "get" or "post" method in forms.
+#in views.py in one of function base views use:
+request.method   #return a string what method is.('post'or'get')
+#if request.method is 'post' then:
+request.POST returns a dict has infos.
+
+
+
+
+####    redirect  
+form http.shortcuts import redirect      #when use it status code is in range 300
+return redirect(reverse("url_name"))    return back to the"url_name"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
