@@ -766,13 +766,22 @@ required = True or False    # it require to or not.
 
 
 
+#use attributes in widget 
+widget=forms.TextInput(
+            attrs={
+                'class':'form-control col-md-12',        #make html class in python file,
+                'placeholder':"text",
+            }
+        )
 
 
 
-
-
-
-
+#use separated forms in .html files.
+        <div class='col-md-6 form-group'>
+         {{contact_form.email.label_tag}}   'various part of form's item.'
+         {{contact_form.email}}
+         {{contact_form.email.errors}}
+         </div>
 
 
 
