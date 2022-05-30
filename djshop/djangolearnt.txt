@@ -757,11 +757,12 @@ if request.method == "POST":
 
 
 
-
-
-
-
-
+#items in form's fields. 
+label="any"    #name is shown to sign the form item.
+widget=forms.EmailInput   # what type of data in form is used
+error_messages = { 'required':"enter ...",....}  #what to show when error 
+max_length=20
+required = True or False    # it require to or not.
 
 
 
