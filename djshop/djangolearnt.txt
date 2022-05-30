@@ -729,10 +729,31 @@ return redirect(reverse("url_name"))    return back to the"url_name"
 
 
 
+from django.urls import reverse
+from django.shortcuts import redirect
 
+data validation...
 
-
-
+#use forms.
+#make forms.py in app and in that
+from django. import forms.
+#then make a class inherited(forms.Form)
+class class_name_forms(forms.Form):
+#make the item you wanna make it form
+item_1_text = forms.CharField()
+item_2_email = forms.EmailField()    #and any other fields ... google it....
+#then go to urls.py and make it return to related .html file by render to it 
+#import forms.py in views.py 
+from .forms import class_name_form
+#then use it in function based views
+def function_view_form(request):
+#realize what method is used to send infos(post or get)by request.method
+if request.method == "POST":
+   new_class_variable = class_name_form(request.POST)  # to get all information and make an object in variable
+   if new_class_variable.is_valid():    #that object id valid or not. for instace email is right email or not
+      print(new_class_variable.cleaned_data)    #print all data in an object ###cleaned_data need to come after ".is_valid"
+      return render(request,"page.html",{"send_to_html":new_class_variable}) 
+#then go to .html file and use it by {{send_to_html}} #it makes all forms.....
 
 
 
