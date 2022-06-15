@@ -50,11 +50,24 @@
 	    				<div class="status alert alert-success" style="display: none"></div>
 				    	<form action ="{%url 'contact_page'%}" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
 				            {% csrf_token %}
+
+							{%comment%}
+							{%for field in contact_form%}
 							<div class='col-md-6 form-group'>
-							{{contact_form.full_name.label_tag}}
-							{{contact_form.full_name}}
-							{{contact_form.full_name.errors}}
+							{{field.label_tag}}
+							{{field}}
+							{{field.errors}}
 							</div>
+							<hr>
+		
+							{% endfor %}
+							{%endcomment%}
+							<div class='col-md-6 form-group'>
+								{{contact_form.full_name.label_tag}}
+								{{contact_form.full_name}}
+								{{contact_form.full_name.errors}}
+							</div>
+							
 							<div class='col-md-6 form-group'>
 								{{contact_form.email.label_tag}}
 								{{contact_form.email}}

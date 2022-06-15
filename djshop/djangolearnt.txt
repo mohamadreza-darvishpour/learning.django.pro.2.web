@@ -149,7 +149,8 @@ then make a file named 'base.html' or other name...
 write base html code.
 then use {% block block_name %} default data{% endblock block_name %} at 'base.html'file
 #how to use it in other html file
-{% extends '../../../or_path_of_base.html' %} or {% extends 'name_of_base.html' %} ###
+{% extends '../../../or_path_of_base.html' %} or {% extends 'name_of_base.html' %} 
+#it should come before all the html code....
 ***but if you want to use the direct name of 'name_of_base.html' you should add the 
 newtemplats folder PATH in the settings at templates part
 *it reuse the base.html file.
@@ -783,14 +784,35 @@ widget=forms.TextInput(
          {{contact_form.email.errors}}
          </div>
 
+#use "for" when get them in html
+*not sure: after signing form in html code class in form tag do :::
+*if you have more than one item in your form group you could handle it by 'for' loop 
+{%for item in group_form%}
+         {{item.label_tag}}
+         {{item}}
+         {{item.errors}}
+{%endfor%}
+#make and run all the html code automatically for various datas in form group.
+
+
+#send data by form to database by views.py
+from .from import form_group
+from .models import models_func 
+make an object of form_group by new variable in "post" method of form
+new_form_obj = form_group(request.POST)   #new object in addition more inform
+#now you should run is_valid method. its essential
+if(new_form_obj.is_valid())  #if its been true::: continue
+         #make new objec of models_func
+         new_model_obj = models_func(
+            item1_in_models_func = new_form_obj("similar_item"),
+            item2_in_models_func = new_form_obj("similar_item2"),
+            ...
+         )
 
 
 
 
-
-
-
-
+#***  directly connect forms to models or database  ***#
 
 
 
