@@ -44,3 +44,19 @@ class contact_us_form(forms.Form):
             }
         )
         )
+
+
+
+
+
+from .models import contact_us
+class contact_model_form(forms.ModelForm):
+    class Meta:
+        model = contact_us
+        fields = ['email','title','full_name','message']   #just show members of field
+        #fields = '__all__'     #show all
+        #exclude = ['is_read_by_admin']   #show all despite exclude member
+
+
+
+

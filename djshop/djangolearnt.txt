@@ -813,6 +813,22 @@ if(new_form_obj.is_valid())  #if its been true::: continue
 
 
 #***  directly connect forms to models or database  ***#
+#model forms
+first: import your class want directly connect
+second: make class inherited from (forms.ModelForm) in forms.py 
+third: make a class "Meta" in above class 
+then in meta sign "model = 'class_model_imported'"
+and:   
+         filds = ['item1inclss','item3inclass',...]
+.e.g
+from .models import contact_us
+class contact_model_form(forms.ModelForm):
+    class Meta:
+        model = contact_us
+        fields = ['email','title','full_name','message']   #just show members of field
+        #fields = '__all__'     #show all
+        #exclude = ['is_read_by_admin']   #show all despite exclude member
+
 
 
 

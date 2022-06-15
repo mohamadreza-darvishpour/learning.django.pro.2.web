@@ -51,7 +51,7 @@
 				    	<form action ="{%url 'contact_page'%}" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
 				            {% csrf_token %}
 
-							{%comment%}
+						 
 							{%for field in contact_form%}
 							<div class='col-md-6 form-group'>
 							{{field.label_tag}}
@@ -61,7 +61,11 @@
 							<hr>
 		
 							{% endfor %}
-							{%endcomment%}
+							 
+
+
+
+							{% comment "" %} 
 							<div class='col-md-6 form-group'>
 								{{contact_form.full_name.label_tag}}
 								{{contact_form.full_name}}
@@ -83,6 +87,8 @@
 							{{contact_form.text}}
 							{{contact_form.text.errors}}
 							</div>
+							{% endcomment %}
+
 
 							 {% comment "" %} 
 							<div class="form-group col-md-6">

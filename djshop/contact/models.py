@@ -7,7 +7,7 @@ class contact_us(models.Model):
     email = models.EmailField(max_length=300,verbose_name = "email")
     full_name = models.CharField(max_length=300,verbose_name="name" )
     message = models.TextField(verbose_name= "message")
-    is_read_by_admin = models.BooleanField(verbose_name="is read by admin?")
+    is_read_by_admin = models.BooleanField(verbose_name="is read by admin?",default=False)
     created_date = models.DateTimeField(verbose_name= "created_date",auto_now_add=True)
     response = models.TextField(verbose_name="response",null=True,blank=True)
    
