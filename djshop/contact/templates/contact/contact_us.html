@@ -48,7 +48,32 @@
 	    			<div class="contact-form">
 	    				<h2 class="title text-center">با ما در ارتباط باشیـد</h2>
 	    				<div class="status alert alert-success" style="display: none"></div>
-				    	<form action ="{%url 'contact_page'%}" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+				    	
+						
+						<form  action="#"  method="post" style="border:2px solid red">
+							{% csrf_token %}
+							{%for form_item in new_form_dic%}
+								<div>
+									{{form_item.label_tag}}
+									{{form_item}}
+									{{form_tiem.errors}}
+								</div>
+							{%endfor%}
+							{%for form_item in direct_model_form%}
+								<div>
+									{{form_item.label_tag}}
+									{{form_item}}
+									{{form_tiem.errors}}
+									<hr>
+								</div>
+							{%endfor%}
+							{% comment "" %}
+								<div>
+									<input type="text" id="firstname" name="fname" placeholder="firstname">
+								</div>
+							{% endcomment %}
+						</form>
+						<form action ="{%url 'contact_page'%}" id="main-contact-form" class="contact-form row" name="contact-form" method="post">
 				            {% csrf_token %}
 
 						 
@@ -58,10 +83,10 @@
 							{{field}}
 							{{field.errors}}
 							</div>
-							<hr>
+							
 		
 							{% endfor %}
-							 
+							<hr>
 
 
 

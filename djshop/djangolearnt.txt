@@ -737,7 +737,7 @@ data validation...
 
 #use forms.
 #make forms.py in app and in that
-from django. import forms.
+from django import forms
 #then make a class inherited(forms.Form)
 class class_name_forms(forms.Form):
 #make the item you wanna make it form
@@ -800,7 +800,7 @@ from .from import form_group
 from .models import models_func 
 make an object of form_group by new variable in "post" method of form
 new_form_obj = form_group(request.POST)   #new object in addition more inform
-#now you should run is_valid method. its essential
+#now you should run is_valid method. #***its essential
 if(new_form_obj.is_valid())  #if its been true::: continue
          #make new objec of models_func
          new_model_obj = models_func(
