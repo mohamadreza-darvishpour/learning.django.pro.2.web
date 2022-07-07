@@ -4,6 +4,21 @@ from .forms import contact_model_form
 from .models import contact_us
 # Create your views here.
 from .forms import new_glance,direct_model_form
+from django.views import View
+
+
+class contact_us4(View):
+    def get(self,request):
+        new_form = direct_model_form()
+        contact_form = {
+            "direct_model_forms":new_form,
+            }
+        return render(request,"contact/contact_us.html",contact_form)
+    def post(self,request):
+        contact_form = direct_model_form(request.POST)
+        if contact_form.is_valid():
+            contact_form.save()
+            return redirect(galnce3_contact_page)
 
 def contact_us3(request):
     print("\n************   request.post = ",request.POST,"**********\n")

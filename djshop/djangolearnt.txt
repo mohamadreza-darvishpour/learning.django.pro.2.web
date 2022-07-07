@@ -861,6 +861,89 @@ huhe notice: *******
 
 
 
+*******        class based views   (views.py)      *******
+to run a html page by class based view and use form in ::
+#make a class inherited 'view'from modules 'django.views'
+         from django.views import View
+         class  class_based_view1(View):
+#make 2 funcs as 'get',and 'post' and self in eachother to specific request recognization.
+            def get(self,request):
+               pass
+            def post(self,request):
+               pass
+#make them right in function as post or get by saving forms item.
+#* then go to urls.py and make the path relate to this class_based_view  ***but its important to add a command 
+#in the end of path that is "as_view()" 
+path("path_url",views.class_based_view.as_view(),name="...")
+
+.e.g:
+from django.views import View               #import view 
+class contact_us4(View):                    #inherit view 
+    def get(self,request):                  #get method function "name is special" by using request
+        new_form = direct_model_form()      #get object of direct model form from forms.py
+        contact_form = {                    #make dict to send in html
+            "contact_form":new_Form,
+            }                               #return it by render.
+        return render(request,"contact/contact_us.html",contact_form)
+    def post(self,request):                 #make post method function by using request.
+        contact_form = direct_model_form(request.POST)    #use reqeust.POST to get infos from direct_model_form  in the forms.py
+        if contact_form.is_valid():                       #is_valid method is essential when you use 'POST'method
+            contact_form.save()                           #direct save the form(because we used 'ModelForm') in database
+            return redirect(galnce3_contact_page)         #redirect to a page after send form's informations.
+#then go to urls.py and add path::::
+path("path_url",views.class_based_view.as_view(),name="...")   #add 'as_view()' command to know class to django as a view.
+
+
+
+google 'class based view'
+
+
+make a simple url path in views by class based views
+from django.views import View
+class index_page_view(View):
+     def get(self,request):              #doubt: urlpath is 'get' method
+         context ={
+             "data":"given data..."
+         }
+         return render(request,"home_module/index_page1.html",context)
+and in urls.py:
+path("url_name",index_page_view.as_view(),name="ldfkj")    #becouse url is some kind of 'get'method we can use it by def get in views.py
+
+
+
+
+
+
+****   send data,use TemplateView,class based view **without**defined 'get or post'
+first:
+from django.views.generic.base import TemplateView       #import TemplateView
+#make a class_based_view iherits TemplateView
+class class_based_view(TemplateView):
+#to send .html file as a template you should send in the 'template_name'
+template_name = "template/path/template.html"
+#how to being ready for send informations: inorder to this subject you should define the "get_context_data"function in current class
+   def get_context_data(self,**kwargs):
+#now you have 2way to continue  1st_way:not send information but ready for that ___ 2nd_way:send informations
+#1st_way:
+         return super().get_context_data(**kwargs)
+
+#2nd_way:
+         #you shold make a variable that include <super().get_context_data(**kwargs)>
+         vari_to_send = super().get_context_data(**kwargs)
+         vari_to_send["key1"] = val1
+         vari_to_send["key2"] = val2 ....
+         return vari_to_send           #now send info to the html page.
+
+.e.g:::::
+from django.views.generic.base import TemplateView
+class index_page_view(TemplateView):
+    template_name = "home_module/index_page1.html"
+    #how to send data by TemplateView
+    def get_context_data(self,**kwargs):
+        new_data = super().get_context_data(**kwargs)
+        #if you do not need any additional data return"super().get_context_data(**kwargs)" if not make it in variable and use it in a way below.
+        new_data["data32"] = "given data 32"
+        return new_data
 
 
 
@@ -869,6 +952,16 @@ huhe notice: *******
 
 
 
+
+
+
+
+
+
+
+
+
+        
 
 
 
