@@ -3,10 +3,10 @@ from django.db import models
 # Create your models here.
 
 class contact_us(models.Model):
-    title = models.CharField(max_length=200,verbose_name="title",)
-    email = models.EmailField(max_length=300,verbose_name = "email")
+    title = models.CharField(max_length=200,verbose_name="title")
+    email = models.EmailField(max_length=300,verbose_name = "email" )
     full_name = models.CharField(max_length=300,verbose_name="name" )
-    message = models.TextField(verbose_name= "message")
+    message = models.TextField(verbose_name= "message" )
     is_read_by_admin = models.BooleanField(verbose_name="is read by admin?",default=False)
     created_date = models.DateTimeField(verbose_name= "created_date",auto_now_add=True)
     response = models.TextField(verbose_name="response",null=True,blank=True)

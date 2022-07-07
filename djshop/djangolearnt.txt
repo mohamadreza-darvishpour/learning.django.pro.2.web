@@ -822,17 +822,38 @@ and:
          filds = ['item1inclss','item3inclass',...]
 .e.g
 from .models import contact_us
+#how to change some features of html code in 'direct models to form'
 class contact_model_form(forms.ModelForm):
     class Meta:
-        model = contact_us
-        fields = ['email','title','full_name','message']   #just show members of field
-        #fields = '__all__'     #show all
-        #exclude = ['is_read_by_admin']   #show all despite exclude member
+         model = contact_us
+         fields = ['email','title','full_name','message']   #just show members of field
+         #fields = '__all__'     #show all
+         #exclude = ['is_read_by_admin']   #show all despite exclude member
+         #*** change some appearance in direct form on models by 'widget'dic in Meta
+         #widget filter what infos should be taken from client
+         widget={
+            "item_in_model_class": forms.TextInput(attrs={
+               'class':'form-control',
+            }),
+            "item2_in_model_class": forms.TextInput(attrs={
+               "border":"2px solid aqua",
+            }),
+
+         }
 
 
+huhe notice: *******
+:  *request.method* return method of request like 'POST' or 'get'
 
 
-
+***directly save model form to database.
+         if request.method is 'POST' 
+         and
+         model_form_object is_valid is altight 
+         #so we can use direct save the model form without signing one by one in model class
+         but just in model form we can use 
+         now run:
+         model_form_obj.save()     #it automatically save the form in database.
 
 
 

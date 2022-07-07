@@ -78,11 +78,51 @@ class new_glance(forms.Form):
 
 
 class direct_model_form(forms.ModelForm):
-    #direct models to form 
     class Meta:
         model = contact_us
-        #fields = ["title","email","full_name","message"]
-        exclude = ("is_read_by_admin","create_date","response")
+        fields = ["title","email","full_name","message"]
+        labels={
+            'title':"the title<>"
+        }
+        widgets={
+            'title':forms.TextInput(attrs={
+                "class":"form-control",
+              }),
+            'email':forms.TextInput(attrs={
+                "class":"form-control",
+                "border":"4px solid yellow"
+              }),
+            'full_name':forms.TextInput(attrs={
+                "class":"form-control",
+                 
+             }),
+            'message':forms.Textarea(attrs={
+                'border':'2px solid yellow',
+                "class":"col-md-9 form-control",
+                'rows':6,
+                'id':'message',
+                 
+             }),
+        
+        }
+        errors={
+            'title':{
+                'required':"insert title man",
+            },
+        
+            'full_name':{
+                'required':"insert fullname man",
+            },
+        
+                    'message':{
+                'required':"insert message man",
+            },
+        
+                    'email':{
+                'required':"insert email man",
+            },
+        }
+
     '''
     not direct model to form
     glance_title = forms.CharField(max_length=200,label="gl_ti")

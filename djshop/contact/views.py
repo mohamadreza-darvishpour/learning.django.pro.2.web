@@ -6,23 +6,30 @@ from .models import contact_us
 from .forms import new_glance,direct_model_form
 
 def contact_us3(request):
-    if request.POST== 'POST':
+    print("\n************   request.post = ",request.POST,"**********\n")
+    if request.method == 'POST':
         new_form = direct_model_form(request.POST)
         if new_form.is_valid():
+            print("\n*********  is  valid   *****************\n")
             print("\n@@@@@@@@@@@",new_form.cleaned_data ,"@@@@@@@@\n")
-            new_contact =contact_us(
-                title=  new_form.cleaned_data.get('glance_title') ,
-                email =  new_form.cleaned_data.get("glance_email")   ,
-                full_name=  new_form.cleaned_data.get("glance_name")  ,
-                message=   new_form.cleaned_data.get("glance_text"),  
-            )
-            new_contact.save()
+            
+            # new_contact =contact_us(
+            #     title=  new_form.cleaned_data.get('glance_title') ,
+            #     email =  new_form.cleaned_data.get("glance_email")   ,
+            #     full_name=  new_form.cleaned_data.get("glance_name")  ,
+            #     message=   new_form.cleaned_data.get("glance_text"),  
+            # )
+            # new_contact.save()
+            new_form.save()
+        else:
+            print("\n*********  isn't valid   *****************\n")
     else:
-        new_form = new_glance()
-    new_contact = {
-            "direct_model_form":new_form,
+        print("\n*********  isn't POST   *****************\n")
+        new_form = direct_model_form()
+    new_contact22 = {
+            "direct_model_forms":new_form,
         }
-    return render(request,"contact/contact_us.html",new_contact )
+    return render(request,"contact/contact_us.html",new_contact22 )
 
 
 def contact_us1(request):
@@ -59,9 +66,6 @@ def contact_us2(request):
             
             )
             new_contact.save()
-
-            
-            
             return redirect("all_prods")
     else:
         contact_form = contact_model_form()
