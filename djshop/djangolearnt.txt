@@ -946,11 +946,44 @@ class index_page_view(TemplateView):
         return new_data
 
 
+#get data and send in class based view 
+#inherit TemplateView 
+#defining get_context_data
+from django.views.generic.base import TemplateView
+class product_detail_view(TemplateView):
+    template_name = "products/item_detail.html"         #send a html page template
+    
+    def get_context_data(self,**kwargs):                 #it returns a data to main html page 
+        #'self' and "**kwargs" : **kwargs includes the argumans we sent in the url that we can read them again
+        given_data = super(product_detail_view,self).get_context_data() #make object of database model
+        #super need to sign the class name you want to use 
+        slug = kwargs["prod_slug"]       #get the variable has been put in urls.py by "kwargs"
+        db_data = get_object_or_404(products,slug=slug)   #get data from model
+        given_data["a_product"] = db_data  #give the data a name to use in .html template
+        return given_data
 
 
 
-
-
+#use query to get data and send them simply
+#use ListView
+#make more simple to get and send from database
+#import ListView and inherit it 
+from django.views.generic import ListView
+class product_show_view(ListView):
+    template_name = "products/shop.html"      #html page you want to send by this view
+    #model defines the model_class_name in models.py
+    model = products_class_in_model
+    #context_object_name get the name you want to send data by that in .html page      
+    context_object_name = "all_products" #name sends data to html through
+    #notice: if 'context_object_name' didn't defined django automatically send by default name ="object_list"
+#so filter data form database in ListView
+#define the "get_queryset(self)" that is default ListView function we can rewrite it  
+    def get_queryset(self):
+        query1 =  super(product_show_view,self).get_queryset()
+        filtered_data = query1.filter(price__lt=1087)       
+        #get data and filter it 
+        return filtered_data
+    
 
 
 
