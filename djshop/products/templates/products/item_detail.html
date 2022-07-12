@@ -46,15 +46,15 @@
         <div class="product-information"><!--/product-information-->
             <img src="static/images/product-details/new.png" class="newarrival" alt="">
             <div>
-                <p> slug = {{a_product.slug}} </p>
-                <p> name = {{a_product.title}}</p>
-                {%if a_product.brand%}
-                <p>brand = {{a_product.brand.title}}</p>
+                <p> slug = {{object.slug}} </p>
+                <p> name = {{object.title}}</p>
+                {%if object.brand%}
+                <p>brand = {{object.brand.title}}</p>
                 {%endif%}
             </div>
             <div>
                 <span>
-                    <span>price = {{a_product.price}} </span>
+                    <span>price = {{object.price}} </span>
                 </span>
                 <span>
                     <label>تعداد :</label>

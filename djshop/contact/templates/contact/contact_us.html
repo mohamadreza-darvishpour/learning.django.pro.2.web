@@ -50,7 +50,7 @@
 	    				<div class="status alert alert-success" style="display: none"></div>
 				    	
 						
-						<form id="main-contact-form" class="contact-form row" action=" {% url 'glance3_contact_page' %}"  method="post"  >
+						<form id="main-contact-form" class="contact-form row"   method="post"  >
 							{% csrf_token %}
 							{% comment   %}
 							{%for form_item in new_form_dic%}
@@ -63,8 +63,8 @@
 								</div>
 							{%endfor%}
 							{% endcomment %}
-							{%for form_item in direct_model_forms%}
-									<p>direct_model_forms</p>
+							{%for form_item in form%}
+									<p>direct_model_forms-4</p>
 									{{form_item.label_tag}}
 									{{form_item}}
 									{{form_item.errors}}

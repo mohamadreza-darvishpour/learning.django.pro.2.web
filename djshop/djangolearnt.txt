@@ -986,6 +986,36 @@ class product_show_view(ListView):
     
 
 
+#use DetailView to show items in database automatically 
+#detail view automatically get the variable in view and make it by one 
+#features of database you wan't('slug',or'pk')
+#* varable in the url must be 'slug:slug' or "int:pk"
+in the views.py you should define ::::
+e.g.
+from django.views.generic import ListView
+class product_show_view(ListView):
+   template_name = "products/shop.html"   #template to send 
+    model = products                      #model you want get items from
+    context_object_name = "all_products" #name sends data to html through
+    #notice: if 'context_object_name' didn't defined django automatically send by default name ="object"
+   #*****   check the names in the .html files
+#make sure if you use "get_absolute_url" in models.py make sure to 
+#use 'pk' or 'slug' has been returned 
+
+
+#make form automatic show by 'FormView'
+#first import FormView
+from django.views.generic.edit import FormView
+#make a class import 'FormView'
+#import the form from .forms
+from .forms import theform
+class contact_us4(FormView):
+    template_name = "contact/contact_us.html"   #template to show#send informations by template variable name('form')
+    form_class = theform   #the form we want use in .form
+    success_url = "next_url"   #after validation we go here
+    def form_valid(self, form):     #to save the form we use this general function
+      form.save()
+      return super().form_valid(form)
 
 
 
@@ -994,7 +1024,20 @@ class product_show_view(ListView):
 
 
 
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

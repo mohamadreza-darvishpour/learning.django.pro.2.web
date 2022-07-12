@@ -31,15 +31,25 @@ class product_show_view(ListView):
     
 
 from django.shortcuts import get_object_or_404
-class product_detail_view(TemplateView):
+from django.views.generic import DetailView
+class product_detail_view(DetailView):
     template_name = "products/item_detail.html"
+    model = products
+    #context_object_name = "products_list"
     
-    def get_context_data(self,**kwargs):
-        given_data = super(product_detail_view,self).get_context_data()
-        slug = kwargs["prod_slug"]
-        db_data = get_object_or_404(products,slug=slug)
-        given_data["a_product"] = db_data
-        return given_data
+
+
+
+
+# class product_detail_view(TemplateView):
+#     template_name = "products/item_detail.html"
+    
+#     def get_context_data(self,**kwargs):
+#         given_data = super(product_detail_view,self).get_context_data()
+#         slug = kwargs["prod_slug"]
+#         db_data = get_object_or_404(products,slug=slug)
+#         given_data["a_product"] = db_data
+#         return given_data
 
 # def products_show(request):
 #     prods = products.objects.all().order_by('price')

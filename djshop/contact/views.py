@@ -7,18 +7,31 @@ from .forms import new_glance,direct_model_form
 from django.views import View
 
 
-class contact_us4(View):
-    def get(self,request):
-        new_form = direct_model_form()
-        contact_form = {
-            "direct_model_forms":new_form,
-            }
-        return render(request,"contact/contact_us.html",contact_form)
-    def post(self,request):
-        contact_form = direct_model_form(request.POST)
-        if contact_form.is_valid():
-            contact_form.save()
-            return redirect(galnce3_contact_page)
+from django.views.generic.edit import FormView
+class contact_us4(FormView):
+    template_name = "contact/contact_us.html"
+    form_class = contact_model_form
+    success_url = "/co/contact_us4"
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+
+
+
+
+    # def get(self,request):
+    #     new_form = direct_model_form()
+    #     contact_form = {
+    #         "direct_model_forms":new_form,
+    #         }
+    #     return render(request,"contact/contact_us.html",contact_form)
+    # def post(self,request):
+    #     contact_form = direct_model_form(request.POST)
+    #     if contact_form.is_valid():
+    #         contact_form.save()
+    #         return redirect(galnce3_contact_page)
 
 def contact_us3(request):
     print("\n************   request.post = ",request.POST,"**********\n")
