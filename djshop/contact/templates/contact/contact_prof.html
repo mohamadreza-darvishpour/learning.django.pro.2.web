@@ -39,7 +39,7 @@
 <form enctype="multipart/form-data" action ="{%url 'contact_profile'%}"  id="main-contact-form" class="contact-form row"   method="post"  >
     {% csrf_token %}
     <div style="margin:'100px';padding:'100px'"> 
-        <input name="uploaded_image" type ="file">
+        {{form}}
     </div>
     <div class="form-group col-md-12">
         <input type="submit" name="submit" class="btn btn-primary pull-right" value="ارسـال">

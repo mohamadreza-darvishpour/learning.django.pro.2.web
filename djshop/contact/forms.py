@@ -1,5 +1,13 @@
 from django  import forms
 from .models import contact_us
+
+
+class profile_form(forms.Form):
+    image_form = forms.FileField()
+
+
+
+
 class Meta:
         model = None
         fields = ("",)

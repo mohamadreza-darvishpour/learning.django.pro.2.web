@@ -1,17 +1,34 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
-from .forms import contact_model_form
+from .forms import contact_model_form,profile_form
 from .models import contact_us
 # Create your views here.
 from .forms import new_glance,direct_model_form
 from django.views import View
 
+
+#how to save or store uploaded files
+def save_file(file):
+    with open("temp/uploaded_pic.jpg","wb+")as dest:
+        for chunk in file.chunks():
+            dest.write(chunk)
+
+
+
 class contact_profile_view(View):
     def get(self,request):
-        return render(request,'contact/contact_prof.html')
+        image_form = profile_form()
+        form = {"form":image_form,}
+        return render(request,'contact/contact_prof.html',form)
     def post(self,request):
-        print("\n***************\n",request.FILES,'\n**************')
+        save_file(request.FILES['image_form'])
         return redirect("/co/contact_prof") #return render(request,'contact_prof.html')
+
+
+
+
+
+
 
 from django.views.generic.edit import CreateView
 from .models import contact_us

@@ -1050,6 +1050,45 @@ then you can see the features or files posted items in views.py by 'request.POST
 
 
 
+#define function to save 'posted'or uploaded picture in the made directory
+def save_file(file):            #get an object from posted file
+    with open("temp/uploaded_pic.jpg","wb+")as dest:    #write it binary to not distribute the type of file#specify destination
+        for chunk in file.chunks():                     #we uploaded chunk by chunk now we should save it chunk by chunk to dont loss memory
+            dest.write(chunk)                           #add chunk to file obj               
+#how to use it?
+e.g.:
+save_file(request.FILES['uploaded_image']) #use it in the post function of class view
+#by request.FILES["file_name_in_template_input"] we recognize the file.
+
+
+
+#save images through forms.py
+first define form class
+
+class form_class_to_upload(forms.Form):
+#use FileField 
+image_form = forms.FileField()
+#then go to view and import form class
+from forms import form_class_to_upload
+#then in get function:
+ form_obj = form_class_to_upload()
+#then put it in dictionary
+ dict = {'form':form_obj}
+#and send it by render to template
+   return render(request,"template.html",dict)   #send the form with name ('form')
+#so go to template and use it by :
+{{form}}
+####
+#now go to the post method function at views.py :
+#more lines above we discribe how define function to save photo
+#now in views.py in post method
+save_file_function(request.FILES['class_form_item_name'])
+return ....
+
+
+
+
+
 
 
 
