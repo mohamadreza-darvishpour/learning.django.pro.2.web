@@ -6,15 +6,40 @@ from .models import contact_us
 from .forms import new_glance,direct_model_form
 from django.views import View
 
+class contact_profile_view(View):
+    def get(self,request):
+        return render(request,'contact/contact_prof.html')
+    def post(self,request):
+        print("\n***************\n",request.FILES,'\n**************')
+        return redirect("/co/contact_prof") #return render(request,'contact_prof.html')
 
-from django.views.generic.edit import FormView
-class contact_us4(FormView):
+from django.views.generic.edit import CreateView
+from .models import contact_us
+class contact_us4(CreateView ):
     template_name = "contact/contact_us.html"
-    form_class = contact_model_form
+    # form_class = contact_model_form
+    model = contact_us        #it must be modelform
+    fields = ['title','message','full_name','email']
     success_url = "/co/contact_us4"
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+    #when Create view using we can to not define form_valid because it automatically save them.
+    # def form_valid(self, form):
+    #     form.save()
+    #     return super().form_valid(form)
+
+
+
+
+
+
+
+# from django.views.generic.edit import FormView
+# class contact_us4(FormView):
+#     template_name = "contact/contact_us.html"
+#     form_class = contact_model_form
+#     success_url = "/co/contact_us4"
+#     def form_valid(self, form):
+#         form.save()
+#         return super().form_valid(form)
 
 
 

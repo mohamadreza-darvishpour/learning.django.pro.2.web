@@ -1020,10 +1020,32 @@ class contact_us4(FormView):
 
 
 
+#create forms via views.py directly using CreateView
+#first import CreateView from django.views.generic.edit 
+from django.views.generic.edit import CreateView
+#import the model you want to make it form in models.py
+from .models import model_form_in_models.py_1 
+class contact_us4(CreateView):
+     template_name = "contact/contact_us.html"   #we wan't use form by template variable 'form'maybe'forms'
+     #form_class = contact_model_form   #we don't use forms. 
+     model = model_form_in_models.py_1   #it must be modelform #create form directly from models.py
+     fields = ["item1_in_model",....]    #items has to include form
+     success_url = "/co/contact_us4"
+     def form_valid(self, form):
+         form.save()
+         return super().form_valid(form)
 
 
 
-
+*******       upload and uploaded file      ***********
+#first define 'get'and 'post' included view
+#and in .html in form tag you should sign("enctype="multipart/form-data" action  , method=   >
+   ") to know it to django
+<form enctype="multipart/form-data" action ="{%url 'contact_profile'%}"  id="main-contact-form" class="contact-form row"   method="post"  >
+#enctype ,action and method is essential.
+#then in .html write the input is <input name="uploaded_image" type ="file"> has 'name' and 'type',
+#name and type is essential
+then you can see the features or files posted items in views.py by 'request.POST'
 
 
 
