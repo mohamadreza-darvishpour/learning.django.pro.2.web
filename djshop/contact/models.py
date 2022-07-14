@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+class profile_images(models.Model):
+    image = models.FileField(upload_to="uploaded_files")
 
 class contact_us(models.Model):
     title = models.CharField(max_length=200,verbose_name="title")

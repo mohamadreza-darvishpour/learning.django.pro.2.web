@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.urls import reverse
 from .forms import contact_model_form,profile_form
-from .models import contact_us
+from .models import contact_us,profile_images
 # Create your views here.
 from .forms import new_glance,direct_model_form
 from django.views import View
@@ -21,8 +21,26 @@ class contact_profile_view(View):
         form = {"form":image_form,}
         return render(request,'contact/contact_prof.html',form)
     def post(self,request):
-        save_file(request.FILES['image_form'])
+        model_variable = profile_images(image= request.FILES['image_form'])
+        model_variable.save()
         return redirect("/co/contact_prof") #return render(request,'contact_prof.html')
+
+
+
+
+
+
+# class contact_profile_view(View):
+#     def get(self,request):
+#         image_form = profile_form()
+#         form = {"form":image_form,}
+#         return render(request,'contact/contact_prof.html',form)
+#     def post(self,request):
+#         submitted_form = profile_form(request.POST ,request.FILES )
+#         if submitted_form.is_valid:
+#             save_file(request.FILES['image_form'])
+#             return redirect("class4_contact_page")
+#         return redirect("/contact_prof") #return render(request,'contact_prof.html')
 
 
 
