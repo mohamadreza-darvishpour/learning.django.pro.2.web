@@ -3,7 +3,7 @@ from .models import contact_us
 
 
 class profile_form(forms.Form):
-    image_form = forms.FileField()
+    image_form = forms.ImageField()
 
 
 

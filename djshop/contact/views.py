@@ -14,16 +14,32 @@ def save_file(file):
             dest.write(chunk)
 
 
+#use createview to get profile pic.
+from django.views.generic.edit import CreateView
+class contact_profile_view(CreateView):
+    template_name = 'contact/contact_prof.html'
+    model = profile_images
+    fields = '__all__'
+    success_url = "contact_prof"#reverse('contact_profile')
+    context_object_name = "form"
 
-class contact_profile_view(View):
-    def get(self,request):
-        image_form = profile_form()
-        form = {"form":image_form,}
-        return render(request,'contact/contact_prof.html',form)
-    def post(self,request):
-        model_variable = profile_images(image= request.FILES['image_form'])
-        model_variable.save()
-        return redirect("/co/contact_prof") #return render(request,'contact_prof.html')
+from django.views.generic.list import ListView 
+from .models import profile_images
+class profiles_list(ListView):
+    template_name = 'contact/profiles_list.html'
+    model = profile_images
+    context_object_name = "images"
+    
+
+# class contact_profile_view(View):
+#     def get(self,request):
+#         image_form = profile_form()
+#         form = {"form":image_form,}
+#         return render(request,'contact/contact_prof.html',form)
+#     def post(self,request):
+#         model_variable = profile_images(image= request.FILES['image_form'])
+#         model_variable.save()
+#         return redirect("/co/contact_prof") #return render(request,'contact_prof.html')
 
 
 

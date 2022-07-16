@@ -1087,14 +1087,63 @@ return ....
 
 
 
+#upload files by using models.py,forms.py,views.py
+#first in main settings.py add line below:
+MEDIA_ROOT = BASE_DIR / 'uploades'   it makes an 'uploades' file in main directory of django project to handle all MEDIA 
+#then make a model inherited models.Model and make FileField  
+class models_class(models.Model):
+   image = models.FileField(upload_to='uploaded')  #upload_to = where file to save?
+#then go to views and save it by last form_saving_post_function but this way:
+#make variable of models class here then save it....
+model_variable = class_model_file_to_upload(item1= request.FILES['key1_for_item_in_form'])
+model_variable.save    #saved....
+
+
+
+#just upload images 
+#you should download ' pillow ' package to run it....
+#in the models.py in your class to save the pictures change field to 'ImageField'
+#then in the forms.py change field to "ImageField" too.
+#now run code in html by template variables 
 
 
 
 
 
 
+#get image more simple by use"CreateView"
+#first import CreateView
+from django.views.generic.edit import CreateView
+from django.models import profile_images_imported_in_model
+#inherit it 
+class contact_profile_view(CreateView):
+#sign template you wanna use 
+    template_name = 'contact/contact_prof.html'
+   #sign model class you want to save pictures
+    model = profile_images_imported_in_model()
+    #fields of model
+    fields = '__all__'
+    #after success upload where to send
+    success_url = reverse('contact_profile')
+    #template variable name.
+    context_object_name = "get_pic"
 
 
+
+#** django locks its folder's url to not access to those
+#to solve above problem to use media files we should do :::
+#in main settings.py add these lines to specify the url that allowed to files
+
+MEDIA_ROOT = BASE_DIR  /'uploaded_files'   #know where save all media file
+MEDIA_URL = "/medias/"                     #what prefixes use to allow url
+#then in the main urls.py add those url in the way:
+from django.conf.urls.static import static
+from django.conf import settings
+urlpatterns = [
+   path(....),
+   path(....),
+   ...
+   ] + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
 
 
 

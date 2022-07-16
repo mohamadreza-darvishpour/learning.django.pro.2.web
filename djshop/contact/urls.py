@@ -6,4 +6,5 @@ urlpatterns = [
     path("contact_us3",views.contact_us3,name="glance3_contact_page"),
     path("contact_us1",views.contact_us1,name="glance_contact_page"),
     path("contact_us",views.contact_us2,name="contact_page"),
+    path("prof_show",views.profiles_list.as_view(),name = "prof_list"),
 ]
