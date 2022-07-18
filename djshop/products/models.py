@@ -49,6 +49,7 @@ class products(models.Model):
     description = models.TextField(verbose_name="main_description",db_index=True,)
     short_description = models.CharField(max_length=390,null=True,db_index=True,verbose_name ='short-description')
     is_active = models.BooleanField(default=False,verbose_name="is_active/not_active")
+    image = models.ImageField(upload_to="uploadedfiles/products",null=True,blank=True,verbose_name="picture")
     slug = models.SlugField(max_length=300,editable=True,blank=True,default="",null=False,db_index=True,unique=True)
     category = models.ManyToManyField(product_category,related_name="product_category",verbose_name="categories")
     is_deleted = models.BooleanField(verbose_name="deleted/undeleted")

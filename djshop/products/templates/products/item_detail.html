@@ -55,6 +55,11 @@
             <div>
                 <span>
                     <span>price = {{object.price}} </span>
+                    <p>is_favorite={{is_favorite}} </p>
+                    {%if is_favorite %}
+                        <p> this is your favorite product saved in sessions.</p>
+                    {%endif%}
+                    
                 </span>
                 <span>
                    <form  method="post"   action="{% url 'favorite_prod_url' %}" >

@@ -3,7 +3,9 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="images/shop/product.jpg" alt="" />
+										{%if item.image%}
+										<img src="{{item.image.url}}" alt="" />
+										{%endif%}
 										<h2> {{item.price}}$$$$$</h2>
 										<p>{{item.title}}</p>
 										<p> {{item.short_description}} </p>

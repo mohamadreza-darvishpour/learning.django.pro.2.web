@@ -10,7 +10,7 @@ class favorite_product_view(View):
     def post(self,request):
         favorite_prod_id = request.POST['favorite_prod_id']
         product = products.objects.get(id=favorite_prod_id)
-        request.session["favorite_product"] = favorite_prod_id
+        request.session["favorite_product"] = str(favorite_prod_id)
         return redirect(product.get_absolute_url())
 
 
@@ -47,8 +47,14 @@ class product_detail_view(DetailView):
     template_name = "products/item_detail.html"
     model = products
     #context_object_name = "products_list"
-    
-
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        product_loaded = self.object.id
+        request = self.request
+        #favorite_prod_id_in_session = request.session['favorite_product']
+        favorite_prod_id_in_session = request.session.get('favorite_product')
+        context["is_favorite"] = str(favorite_prod_id_in_session)==str(product_loaded)
+        return context
 
 
 

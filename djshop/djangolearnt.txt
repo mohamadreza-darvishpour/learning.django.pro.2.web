@@ -1179,6 +1179,18 @@ class views.maked_class_to_process_sent_request(View):
       #now return on current page. 
       return redirect("the_current_page_url") 
       
+#use session in template .html file
+#its very easy by sending data form context_object_name in the item_show_view
+def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        product_loaded = self.object.id   #object is default variable template name given from DetailView
+        request = self.request   #give information from request to make it and make sessions
+        #favorite_prod_id_in_session = request.session['favorite_product']  #get data by the name of sent session as a key
+        #to not see the error for not using one time session we can use the line below not above.
+        #favorite_prod_id_in_session = request.session.get('favorite_product')  #get data by the name of sent session as a key
+        #notice**: session has should been used one time. to not see the error.
+        context["is_favorite"] = str(favorite_prod_id_in_session)==str(product_loaded)   #send object to template.
+        return context
 
 
 
