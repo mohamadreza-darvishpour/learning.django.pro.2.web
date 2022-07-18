@@ -2,6 +2,17 @@ from django.shortcuts import render
 from .models import products
 from django.views.generic.base import TemplateView
 # Create your views here.
+from django.shortcuts import redirect
+
+#a class to use session and save info in sessions 
+from django.views import View
+class favorite_product_view(View):
+    def post(self,request):
+        favorite_prod_id = request.POST['favorite_prod_id']
+        product = products.objects.get(id=favorite_prod_id)
+        request.session["favorite_product"] = favorite_prod_id
+        return redirect(product.get_absolute_url())
+
 
 
 

@@ -58,7 +58,7 @@ class products(models.Model):
     
     def get_absolute_url(self):
         from django.urls import reverse
-        url_to_return =f'{self.id}_{self.slug}'
+        url_to_return =f'{self.slug}'
         return reverse("prod_detail",args=[url_to_return,] )
     
     def save(self,*args,**kwargs):

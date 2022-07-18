@@ -1148,6 +1148,37 @@ urlpatterns = [
 
 
 
+************      sessions       ***************
+#session id keep us login
+
+** what do we need to use sessions in django?
+#first check in the main settings.py that includes the line below in the MIDDDLEWEAR part
+'django.contrib.sessions.middleware.SessionMiddleware',
+#then in the settings.py in INSTALLED_APPS  add line below or make sure includes it....
+'django.contrib.sessions',
+
+*change the session expire_date
+#default sessions in django expires in 2weeks
+to change it add line bellow in main settings.py 
+SESSION_COOKIE_AGE = 34200   #has been measured by seconds.
+
+#make view using sessions
+#first in template .html file make an input,buttom (in form) 
+#then make a new urls.py url to send the action=? to ..
+path("same_address_in_action_in_form_in_template",views.maked_class_to_process_sent_request.as_view(),name="not_important"),
+#so make a view contains the line to process the request and save the information to current session:
+from django.views import View
+class views.maked_class_to_process_sent_request(View):
+   def post(self,request):
+      #give informations from request
+      item_given = request.POST["input_name_in_template"]
+      #process item_given for example getting it from database
+      #so now without any process in informations we save the 'item_given' in the current page session
+      #notice:google json file,,,, item to save in session must be simple like an integer,string..
+      request.session['key_to_save_session'] = item_given
+      #now return on current page. 
+      return redirect("the_current_page_url") 
+      
 
 
 

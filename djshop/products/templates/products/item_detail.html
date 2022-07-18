@@ -57,12 +57,16 @@
                     <span>price = {{object.price}} </span>
                 </span>
                 <span>
+                   <form  method="post"   action="{% url 'favorite_prod_url' %}" >
+                    {% csrf_token  %}
                     <label>تعداد :</label>
-                    <input type="text" value="3" class="search_box">
-                    <button type="button" class="btn btn-fefault cart">
+                    <input type="hidden" name="favorite_prod_id" value="{{object.id}}" class="search_box">
+                    <button type="submit" class="btn btn-fefault cart">
                         <i class="fa fa-shopping-cart"></i>
-                        افـزودن به سبـد خریـد
+                        افزودن به مورد علاقه توسط سشن ها 
                     </button>
+
+                   </form>
                 </span>
             </div>
             
