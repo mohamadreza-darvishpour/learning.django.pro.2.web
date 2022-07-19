@@ -1195,6 +1195,52 @@ def get_context_data(self,**kwargs):
 
 
 
+#**********    user authentication   not default    ***********#
+#if you dont make user authentication till other app in project go this way
+#you should first deactive all part of models.py class and urls.py
+#first make an app to control user authentication 
+./manage.py startapp user_auth_control
+#then add items in the class in models.py 
+
+from django.db import models
+from django.contrib.auth.models import AbstractUser,AbstractBaseUser
+class user(AbstractUser):
+   #make items
+    item1 = models.CharField(max_length=30,verbose_name="phone_number")
+    email_active_code = models.CharField(max_length=100,verbose_name="email_activation_code")
+    class Meta:
+        verbose_name = "client"
+        verbose_name_plural = "clients"
+    def __str__(self):
+        return self.get_full_name()
+
+#so delete the last database
+#delete all initial files in migration files 
+#deactivate last models by commenting main urls.py all created url's path
+#deactivate last installed_apps by commenting main settings.py 
+#delete db.sqlite3 file 
+#add the new model class to control user authentication by adding line bellow to settings.py
+AUTH_USER_MODEL = "made_control_user_auth.class_name_in_auth_app_model"
+#the line above makes the current auth_user_model new inorder to not use default's of django...
+#then 
+./manage.py makemigrations 
+./manage.py migrate
+#now activate the deactivated main urls and main installed_apps again
+#and run 
+./manage.py migrate
+#new auth user class installed and has been made_control_user_auth.class_name_in_auth_app_model
+*****
+
+
+
+
+
+
+
+
+
+
+
 
 
 

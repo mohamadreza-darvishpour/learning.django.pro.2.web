@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #internal apps
     'products',
     'home_module',
     'contact',
+    'account_module',
+    #external apps
     'django_render_partial',
 ]
 
@@ -76,6 +79,9 @@ WSGI_APPLICATION = 'djshop.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+
+#add line bellow to use our made user auth model not default user model auth of django
+AUTH_USER_MODEL = "account_module.user"
 
 DATABASES = {
     'default': {
